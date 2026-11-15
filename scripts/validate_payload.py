@@ -15,7 +15,7 @@ from urllib.request import Request, urlopen
 
 import yaml
 
-BACKEND_REPO = "BrigadaSOS/Nadeshiko"
+BACKEND_REPO = "Natsume-197/Nadeshiko"
 SPEC_PATH = "backend/docs/generated/openapi.yaml"
 
 SEMVER_REGEX = re.compile(

@@ -5,8 +5,12 @@ Python SDK for the [Nadeshiko API](https://nadeshiko.co). Full API reference at 
 ## Install
 
 ```bash
-pip install nadeshiko-sdk
+pip install nadeshiko-sdk-py
 ```
+
+> **Moved:** this SDK used to be published as `nadeshiko-sdk` (last version 2.6.0). New releases are
+> published only as `nadeshiko-sdk-py`. The import name is unchanged (`import nadeshiko`), so switch
+> the package name in your requirements and uninstall the old one (`pip uninstall nadeshiko-sdk`).
 
 ## Quick start
 

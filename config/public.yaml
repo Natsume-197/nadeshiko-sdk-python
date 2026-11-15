@@ -1,3 +1,3 @@
-project_name_override: nadeshiko-sdk
+project_name_override: nadeshiko-sdk-py
 package_name_override: nadeshiko
 literal_enums: true

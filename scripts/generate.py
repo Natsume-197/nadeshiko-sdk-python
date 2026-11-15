@@ -22,7 +22,7 @@ from postprocess_wrappers import collect_operations, write_wrapper_files
 ROOT_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = ROOT_DIR / "templates"
 DEFAULT_SPEC_URL = (
-    "https://raw.githubusercontent.com/BrigadaSOS/Nadeshiko/main/"
+    "https://raw.githubusercontent.com/Natsume-197/Nadeshiko/main/"
     "backend/docs/generated/openapi.yaml"
 )
 DEFAULT_LOCAL_SPEC = (
