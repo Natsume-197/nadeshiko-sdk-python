@@ -53,7 +53,7 @@ jobs:
         id: payload
         run: python scripts/validate_payload.py
 
-      - name: Check PyPI for existing versions
+      - name: Check PyPI for existing version
         id: pypi_check
         run: |
           set -euo pipefail
@@ -62,38 +62,24 @@ jobs:
           PUBLIC_EXISTS="false"
           if [[ "${CHANNEL}" == "stable" ]]; then
             VERSION="${{ steps.payload.outputs.public_version }}"
-            if curl -sf "https://pypi.org/pypi/nadeshiko-sdk/${VERSION}/json" > /dev/null 2>&1; then
+            if curl -sf "https://pypi.org/pypi/nadeshiko-sdk-py/${VERSION}/json" > /dev/null 2>&1; then
               PUBLIC_EXISTS="true"
             fi
           fi
 
-          INTERNAL_EXISTS="false"
-          VERSION="${{ steps.payload.outputs.internal_version }}"
-          if curl -sf "https://pypi.org/pypi/nadeshiko-internal-sdk/${VERSION}/json" > /dev/null 2>&1; then
-            INTERNAL_EXISTS="true"
-          fi
-
           echo "public_exists=${PUBLIC_EXISTS}" >> "$GITHUB_OUTPUT"
-          echo "internal_exists=${INTERNAL_EXISTS}" >> "$GITHUB_OUTPUT"
 
+      # The internal SDK is not published to PyPI; an internal run only regenerates
+      # generated/internal and commits it when it changed. Ingest builds its wheel locally.
       - name: Check if release should be skipped
         id: skip
         run: |
           set -euo pipefail
           SKIP="false"
           SKIP_REASON=""
-          CHANNEL="${{ steps.payload.outputs.release_channel }}"
-
-          if [[ "${CHANNEL}" == "internal" ]]; then
-            if [[ "${{ steps.pypi_check.outputs.internal_exists }}" == "true" ]]; then
-              SKIP="true"
-              SKIP_REASON="internal version already exists on PyPI"
-            fi
-          else
-            if [[ "${{ steps.pypi_check.outputs.public_exists }}" == "true" && "${{ steps.pypi_check.outputs.internal_exists }}" == "true" ]]; then
-              SKIP="true"
-              SKIP_REASON="both public and internal versions already exist on PyPI"
-            fi
+          if [[ "${{ steps.pypi_check.outputs.public_exists }}" == "true" ]]; then
+            SKIP="true"
+            SKIP_REASON="public version already exists on PyPI"
           fi
 
           echo "skip=${SKIP}" >> "$GITHUB_OUTPUT"
@@ -108,7 +94,7 @@ jobs:
             echo "- Reason: ${{ steps.skip.outputs.skip_reason }}"
             echo "- Channel: \`${{ steps.payload.outputs.release_channel }}\`"
             echo "- Spec version: \`${{ steps.payload.outputs.spec_version }}\`"
-            echo "- Internal version: \`nadeshiko-internal-sdk==${{ steps.payload.outputs.internal_version }}\`"
+            echo "- Public version: \`nadeshiko-sdk-py==${{ steps.payload.outputs.public_version }}\`"
             echo "- Bump the spec version to publish a new release."
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -200,12 +186,6 @@ jobs:
         with:
           packages-dir: build/public/dist/
 
-      - name: Publish internal package to PyPI
-        if: steps.skip.outputs.skip != 'true' && steps.pypi_check.outputs.internal_exists != 'true'
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: build/internal/dist/
-
       - name: Create tag
         if: steps.skip.outputs.skip != 'true' && steps.payload.outputs.release_channel == 'stable'
         env:
@@ -238,23 +218,23 @@ jobs:
             - Backend SHA: `${{ steps.payload.outputs.backend_sha }}`
             - OpenAPI spec: `${{ steps.payload.outputs.spec_url }}`
             - Spec version: `${{ steps.payload.outputs.spec_version }}`
-            - PyPI public: `nadeshiko-sdk==${{ steps.payload.outputs.public_version }}`
-            - PyPI internal: `nadeshiko-internal-sdk==${{ steps.payload.outputs.internal_version }}`
+            - PyPI: `nadeshiko-sdk-py==${{ steps.payload.outputs.public_version }}`
+            - Internal SDK `${{ steps.payload.outputs.internal_version }}`: release assets only, not on PyPI
 
       - name: Summary
         if: steps.skip.outputs.skip != 'true'
         run: |
           CHANNEL="${{ steps.payload.outputs.release_channel }}"
           {
-            echo "## Python SDK Release Published"
+            echo "## Python SDK Release"
             echo ""
             echo "- Channel: \`${CHANNEL}\`"
             echo "- Spec version: \`${{ steps.payload.outputs.spec_version }}\`"
             if [[ "${CHANNEL}" == "stable" ]]; then
               echo "- Tag: \`${{ steps.payload.outputs.release_tag }}\`"
-              echo "- PyPI public: \`nadeshiko-sdk==${{ steps.payload.outputs.public_version }}\`"
+              echo "- PyPI: \`nadeshiko-sdk-py==${{ steps.payload.outputs.public_version }}\`"
             fi
-            echo "- PyPI internal: \`nadeshiko-internal-sdk==${{ steps.payload.outputs.internal_version }}\`"
+            echo "- Internal SDK: \`${{ steps.payload.outputs.internal_version }}\` (not published to PyPI)"
             echo "- Backend: \`${{ steps.payload.outputs.backend_repo }}@${{ steps.payload.outputs.backend_sha }}\`"
             echo "- Spec URL: \`${{ steps.payload.outputs.spec_url }}\`"
           } >> "$GITHUB_STEP_SUMMARY"

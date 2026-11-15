@@ -30,7 +30,7 @@ DEPENDENCIES = [
 
 TARGET_META: dict[BuildTarget, dict[str, str]] = {
     "public": {
-        "package_name": "nadeshiko-sdk",
+        "package_name": "nadeshiko-sdk-py",
         "import_name": "nadeshiko",
         "description": "Python SDK for Nadeshiko API (public endpoints only)",
         "version_env": "SDK_VERSION",
