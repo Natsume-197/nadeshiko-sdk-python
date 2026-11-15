@@ -23,13 +23,6 @@ class SearchSort:
               `preferMedia` titles as a first block; see `preferMedia`
             - `ASC` / `DESC`: by segment length (character count)
             - `TIME_ASC` / `TIME_DESC`: by episode & position within an episode
-            - `DIFFICULTY_ASC` / `DIFFICULTY_DESC`: by estimated difficulty, then by length in the same direction.
-              Each content word is ranked on an anime word-frequency list; the two rarest distinct words set the order
-              (the rarest first, then the second rarest), and longer conjugations (食べさせられた over 食べた) raise a
-              sentence within the group its rarest word sets. Proper names and words not on the list count as a moderately
-              rare word (rank 5,000), not the rarest. It does not measure speech speed. In both directions, full sentences
-              of ordinary length (6 to 40 letters) come first; then very short, very long, multi-sentence or stuttered
-              ones; then one-word and cut-off lines; segments without a scorable word come last
             - `RANDOM`: deterministic random order (pass `seed` for reproducibility)
              Default: 'RELEVANCE'.
         seed (int | Unset): Non-negative integer seed for deterministic random sorting (only used when mode is RANDOM)
