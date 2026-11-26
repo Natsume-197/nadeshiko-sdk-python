@@ -16,11 +16,15 @@ class UpdateEmailPreferencesByTokenResponse200Categories:
         recap (bool):
         checkins (bool):
         updates (bool):
+        requests (bool):
+        words (bool):
     """
 
     recap: bool
     checkins: bool
     updates: bool
+    requests: bool
+    words: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -30,6 +34,10 @@ class UpdateEmailPreferencesByTokenResponse200Categories:
 
         updates = self.updates
 
+        requests = self.requests
+
+        words = self.words
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -37,6 +45,8 @@ class UpdateEmailPreferencesByTokenResponse200Categories:
                 "recap": recap,
                 "checkins": checkins,
                 "updates": updates,
+                "requests": requests,
+                "words": words,
             }
         )
 
@@ -51,10 +61,16 @@ class UpdateEmailPreferencesByTokenResponse200Categories:
 
         updates = _src.pop("updates")
 
+        requests = _src.pop("requests")
+
+        words = _src.pop("words")
+
         update_email_preferences_by_token_response_200_categories = cls(
             recap=recap,
             checkins=checkins,
             updates=updates,
+            requests=requests,
+            words=words,
         )
 
         update_email_preferences_by_token_response_200_categories.additional_properties = _src

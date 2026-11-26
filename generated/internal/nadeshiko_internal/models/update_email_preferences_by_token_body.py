@@ -23,6 +23,8 @@ class UpdateEmailPreferencesByTokenBody:
         recap (bool | Unset):
         checkins (bool | Unset):
         updates (bool | Unset):
+        requests (bool | Unset):
+        words (bool | Unset):
     """
 
     token: str
@@ -30,6 +32,8 @@ class UpdateEmailPreferencesByTokenBody:
     recap: bool | Unset = UNSET
     checkins: bool | Unset = UNSET
     updates: bool | Unset = UNSET
+    requests: bool | Unset = UNSET
+    words: bool | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -42,6 +46,10 @@ class UpdateEmailPreferencesByTokenBody:
         checkins = self.checkins
 
         updates = self.updates
+
+        requests = self.requests
+
+        words = self.words
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -58,6 +66,10 @@ class UpdateEmailPreferencesByTokenBody:
             field_dict["checkins"] = checkins
         if updates is not UNSET:
             field_dict["updates"] = updates
+        if requests is not UNSET:
+            field_dict["requests"] = requests
+        if words is not UNSET:
+            field_dict["words"] = words
 
         return field_dict
 
@@ -74,12 +86,18 @@ class UpdateEmailPreferencesByTokenBody:
 
         updates = _src.pop("updates", UNSET)
 
+        requests = _src.pop("requests", UNSET)
+
+        words = _src.pop("words", UNSET)
+
         update_email_preferences_by_token_body = cls(
             token=token,
             enabled=enabled,
             recap=recap,
             checkins=checkins,
             updates=updates,
+            requests=requests,
+            words=words,
         )
 
         update_email_preferences_by_token_body.additional_properties = _src

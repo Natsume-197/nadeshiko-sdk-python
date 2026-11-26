@@ -33,12 +33,19 @@ class UserPreferencesProductEmails:
             updates (bool | Unset): Releases and new features, including any request for support that
                 rides in one. Sent through Zoho Campaigns rather than from here, so
                 this governs the audience export. Absent means follow `enabled`.
+            requests (bool | Unset): News on the content requests the reader voted for or boosted: work
+                started, title released. Absent means follow `enabled`.
+            words (bool | Unset): Word alerts by email: a watched word first appearing, and the weekly
+                digest of new sentences for followed words. Absent means follow
+                `enabled`.
     """
 
     enabled: bool | Unset = UNSET
     recap: bool | Unset = UNSET
     checkins: bool | Unset = UNSET
     updates: bool | Unset = UNSET
+    requests: bool | Unset = UNSET
+    words: bool | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -49,6 +56,10 @@ class UserPreferencesProductEmails:
         checkins = self.checkins
 
         updates = self.updates
+
+        requests = self.requests
+
+        words = self.words
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -61,6 +72,10 @@ class UserPreferencesProductEmails:
             field_dict["checkins"] = checkins
         if updates is not UNSET:
             field_dict["updates"] = updates
+        if requests is not UNSET:
+            field_dict["requests"] = requests
+        if words is not UNSET:
+            field_dict["words"] = words
 
         return field_dict
 
@@ -75,11 +90,17 @@ class UserPreferencesProductEmails:
 
         updates = _src.pop("updates", UNSET)
 
+        requests = _src.pop("requests", UNSET)
+
+        words = _src.pop("words", UNSET)
+
         user_preferences_product_emails = cls(
             enabled=enabled,
             recap=recap,
             checkins=checkins,
             updates=updates,
+            requests=requests,
+            words=words,
         )
 
         user_preferences_product_emails.additional_properties = _src

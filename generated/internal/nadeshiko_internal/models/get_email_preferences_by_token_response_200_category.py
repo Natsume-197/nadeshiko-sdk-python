@@ -1,13 +1,17 @@
 from typing import Literal
 
-GetEmailPreferencesByTokenResponse200Category = Literal["checkins", "recap", "updates"]
+GetEmailPreferencesByTokenResponse200Category = Literal[
+    "checkins", "recap", "requests", "updates", "words"
+]
 
 GET_EMAIL_PREFERENCES_BY_TOKEN_RESPONSE_200_CATEGORY_VALUES: set[
     GetEmailPreferencesByTokenResponse200Category
 ] = {
     "checkins",
     "recap",
+    "requests",
     "updates",
+    "words",
 }
 
 

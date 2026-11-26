@@ -14,7 +14,7 @@ T = TypeVar("T", bound="ExternalId")
 @_attrs_define
 class ExternalId:
     """External IDs for this media, keyed by source. Responses always carry every source as a key, with null for absent
-    mappings. In requests `asin` may be omitted, so clients that predate it keep working.
+    mappings. In requests `asin` and `mal` may be omitted, so clients that predate it keep working.
 
         Attributes:
             anilist (None | str): AniList ID Example: 21459.
@@ -22,6 +22,7 @@ class ExternalId:
             tvdb (None | str): TVDB ID Example: 12345.
             tmdb (None | str): TMDB ID Example: 90955.
             youtube (None | str): YouTube channel ID Example: UCauyM-A8JIJ9NQcw5_jF00Q.
+            mal (None | str | Unset): MyAnimeList ID Example: 20899.
             asin (None | str | Unset): Audible ASIN (audiobooks) Example: B07PPMBZHX.
     """
 
@@ -30,6 +31,7 @@ class ExternalId:
     tvdb: None | str
     tmdb: None | str
     youtube: None | str
+    mal: None | str | Unset = UNSET
     asin: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -49,6 +51,12 @@ class ExternalId:
         youtube: None | str
         youtube = self.youtube
 
+        mal: None | str | Unset
+        if isinstance(self.mal, Unset):
+            mal = UNSET
+        else:
+            mal = self.mal
+
         asin: None | str | Unset
         if isinstance(self.asin, Unset):
             asin = UNSET
@@ -66,6 +74,8 @@ class ExternalId:
                 "youtube": youtube,
             }
         )
+        if mal is not UNSET:
+            field_dict["mal"] = mal
         if asin is not UNSET:
             field_dict["asin"] = asin
 
@@ -110,6 +120,15 @@ class ExternalId:
 
         youtube = _parse_youtube(_src.pop("youtube"))
 
+        def _parse_mal(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        mal = _parse_mal(_src.pop("mal", UNSET))
+
         def _parse_asin(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -125,6 +144,7 @@ class ExternalId:
             tvdb=tvdb,
             tmdb=tmdb,
             youtube=youtube,
+            mal=mal,
             asin=asin,
         )
 

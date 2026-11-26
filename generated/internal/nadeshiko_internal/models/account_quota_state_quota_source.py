@@ -1,11 +1,12 @@
 from typing import Literal
 
-AccountQuotaStateQuotaSource = Literal["default", "legacy_column", "override", "tier"]
+AccountQuotaStateQuotaSource = Literal["default", "legacy_column", "override", "patreon", "tier"]
 
 ACCOUNT_QUOTA_STATE_QUOTA_SOURCE_VALUES: set[AccountQuotaStateQuotaSource] = {
     "default",
     "legacy_column",
     "override",
+    "patreon",
     "tier",
 }
 
