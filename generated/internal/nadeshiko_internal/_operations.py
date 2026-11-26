@@ -95,6 +95,7 @@ OPERATIONS: tuple[OperationMetadata, ...] = (
     OperationMetadata(name="mark_notifications_read", module_path=".api.notifications.mark_notifications_read", paginated=False, doc="Mark notifications as read"),
     OperationMetadata(name="merge_admin_content_request", module_path=".api.admin.merge_admin_content_request", paginated=False, doc="Merge a duplicate request into another"),
     OperationMetadata(name="moderate_episode_segments", module_path=".api.media.moderate_episode_segments", paginated=False, doc="Apply a moderation action to every segment in an episode"),
+    OperationMetadata(name="preview_content_request", module_path=".api.requests.preview_content_request", paginated=False, doc="Preview a request link"),
     OperationMetadata(name="refresh_admin_patreon_connection", module_path=".api.admin.refresh_admin_patreon_connection", paginated=False, doc="Force a live Patreon membership refresh for one user"),
     OperationMetadata(name="refresh_all_admin_patreon_connections", module_path=".api.admin.refresh_all_admin_patreon_connections", paginated=False, doc="Re-sync all linked Patreon memberships immediately"),
     OperationMetadata(name="remove_excluded_media", module_path=".api.user.remove_excluded_media", paginated=False, doc="Remove media from excluded list"),

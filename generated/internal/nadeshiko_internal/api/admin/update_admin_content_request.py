@@ -110,7 +110,8 @@ def sync_detailed(
      Edits a request or moves it between statuses. Declining needs a reason, which readers see. Moving a
     request to
     IN_PROGRESS or RELEASED emails everyone who voted for or boosted it (unless they opted out of
-    request news).
+    request news), unless
+    `notify` is false.
 
     Args:
         request_id (UUID):
@@ -147,7 +148,8 @@ def sync(
      Edits a request or moves it between statuses. Declining needs a reason, which readers see. Moving a
     request to
     IN_PROGRESS or RELEASED emails everyone who voted for or boosted it (unless they opted out of
-    request news).
+    request news), unless
+    `notify` is false.
 
     Args:
         request_id (UUID):
@@ -181,7 +183,8 @@ async def asyncio_detailed(
      Edits a request or moves it between statuses. Declining needs a reason, which readers see. Moving a
     request to
     IN_PROGRESS or RELEASED emails everyone who voted for or boosted it (unless they opted out of
-    request news).
+    request news), unless
+    `notify` is false.
 
     Args:
         request_id (UUID):
@@ -216,7 +219,8 @@ async def asyncio(
      Edits a request or moves it between statuses. Declining needs a reason, which readers see. Moving a
     request to
     IN_PROGRESS or RELEASED emails everyone who voted for or boosted it (unless they opted out of
-    request news).
+    request news), unless
+    `notify` is false.
 
     Args:
         request_id (UUID):

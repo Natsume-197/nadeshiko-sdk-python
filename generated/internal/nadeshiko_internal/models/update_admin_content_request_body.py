@@ -36,6 +36,8 @@ class UpdateAdminContentRequestBody:
         decline_reason (None | str | Unset):
         media_id (None | str | Unset): Public id of the media the request is for or produced.
         dismiss_duplicate (bool | Unset): Clear the possible-duplicate flag.
+        notify (bool | Unset): False moves the request without telling its voters (no bell entry, no email). Default:
+            True.
     """
 
     status: UpdateAdminContentRequestBodyStatus | Unset = UNSET
@@ -47,6 +49,7 @@ class UpdateAdminContentRequestBody:
     decline_reason: None | str | Unset = UNSET
     media_id: None | str | Unset = UNSET
     dismiss_duplicate: bool | Unset = UNSET
+    notify: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -86,6 +89,8 @@ class UpdateAdminContentRequestBody:
 
         dismiss_duplicate = self.dismiss_duplicate
 
+        notify = self.notify
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -107,6 +112,8 @@ class UpdateAdminContentRequestBody:
             field_dict["mediaId"] = media_id
         if dismiss_duplicate is not UNSET:
             field_dict["dismissDuplicate"] = dismiss_duplicate
+        if notify is not UNSET:
+            field_dict["notify"] = notify
 
         return field_dict
 
@@ -167,6 +174,8 @@ class UpdateAdminContentRequestBody:
 
         dismiss_duplicate = _src.pop("dismissDuplicate", UNSET)
 
+        notify = _src.pop("notify", UNSET)
+
         update_admin_content_request_body = cls(
             status=status,
             title=title,
@@ -177,6 +186,7 @@ class UpdateAdminContentRequestBody:
             decline_reason=decline_reason,
             media_id=media_id,
             dismiss_duplicate=dismiss_duplicate,
+            notify=notify,
         )
 
         update_admin_content_request_body.additional_properties = _src

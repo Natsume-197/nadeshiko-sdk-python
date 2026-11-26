@@ -266,6 +266,15 @@ from .notification import Notification
 from .notification_kind import NotificationKind
 from .notification_payload import NotificationPayload
 from .patreon_connection import PatreonConnection
+from .preview_content_request_body import PreviewContentRequestBody
+from .preview_content_request_response_200 import PreviewContentRequestResponse200
+from .preview_content_request_response_200_category import PreviewContentRequestResponse200Category
+from .preview_content_request_response_200_existing_type_0 import (
+    PreviewContentRequestResponse200ExistingType0,
+)
+from .preview_content_request_response_200_existing_type_0_media import (
+    PreviewContentRequestResponse200ExistingType0Media,
+)
 from .refresh_all_admin_patreon_connections_response_200 import (
     RefreshAllAdminPatreonConnectionsResponse200,
 )
@@ -702,6 +711,11 @@ __all__ = (
     "NotificationKind",
     "NotificationPayload",
     "PatreonConnection",
+    "PreviewContentRequestBody",
+    "PreviewContentRequestResponse200",
+    "PreviewContentRequestResponse200Category",
+    "PreviewContentRequestResponse200ExistingType0",
+    "PreviewContentRequestResponse200ExistingType0Media",
     "RefreshAllAdminPatreonConnectionsResponse200",
     "Report",
     "ReportDataType0",
