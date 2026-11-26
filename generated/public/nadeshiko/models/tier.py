@@ -16,13 +16,17 @@ class Tier:
     """
     Attributes:
         id (str): Stable slug referenced by an account's `tierId` Example: plus.
-        display_name (str):  Example: Plus.
-        monthly_quota_limit (int): API calls allowed per calendar month on this tier Example: 25000.
+        display_name (str):  Example: Seed.
+        monthly_quota_limit (int): API calls allowed per calendar month on this tier Example: 15000.
         sort_order (int): Display order; the id is a slug, not a rank Example: 10.
         rate_limit_max (int | None | Unset): Per-key burst allowance stamped onto keys created while on this tier.
             Null inherits the deployment-wide default.
         rate_limit_window_ms (int | None | Unset): Window for `rateLimitMax`, in milliseconds. Null inherits the
             default.
+        patreon_tier_id (None | str | Unset): The Patreon tier whose members earn this tier, matched against the
+            member's entitled tiers. Null when Patreon never grants it and only an
+            assignment reaches it.
+             Example: 22710324.
     """
 
     id: str
@@ -31,6 +35,7 @@ class Tier:
     sort_order: int
     rate_limit_max: int | None | Unset = UNSET
     rate_limit_window_ms: int | None | Unset = UNSET
+    patreon_tier_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -54,6 +59,12 @@ class Tier:
         else:
             rate_limit_window_ms = self.rate_limit_window_ms
 
+        patreon_tier_id: None | str | Unset
+        if isinstance(self.patreon_tier_id, Unset):
+            patreon_tier_id = UNSET
+        else:
+            patreon_tier_id = self.patreon_tier_id
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -68,6 +79,8 @@ class Tier:
             field_dict["rateLimitMax"] = rate_limit_max
         if rate_limit_window_ms is not UNSET:
             field_dict["rateLimitWindowMs"] = rate_limit_window_ms
+        if patreon_tier_id is not UNSET:
+            field_dict["patreonTierId"] = patreon_tier_id
 
         return field_dict
 
@@ -100,6 +113,15 @@ class Tier:
 
         rate_limit_window_ms = _parse_rate_limit_window_ms(_src.pop("rateLimitWindowMs", UNSET))
 
+        def _parse_patreon_tier_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        patreon_tier_id = _parse_patreon_tier_id(_src.pop("patreonTierId", UNSET))
+
         tier = cls(
             id=id,
             display_name=display_name,
@@ -107,6 +129,7 @@ class Tier:
             sort_order=sort_order,
             rate_limit_max=rate_limit_max,
             rate_limit_window_ms=rate_limit_window_ms,
+            patreon_tier_id=patreon_tier_id,
         )
 
         tier.additional_properties = _src

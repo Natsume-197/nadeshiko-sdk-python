@@ -19,10 +19,16 @@ class MediaFilterItem:
         media_public_id (str): Media public ID (nanoid) Example: V1StGXR8_Z5d.
         episodes (list[int] | Unset): Specific episodes (omit for all episodes). Use 0 for movies/specials Example: [1,
             2].
+        min_episode (int | Unset): Inclusive lower episode bound (e.g. exclude episodes above a reader's current
+            progress) Example: 7.
+        max_episode (int | Unset): Inclusive upper episode bound (e.g. include only episodes up to a reader's current
+            progress) Example: 6.
     """
 
     media_public_id: str
     episodes: list[int] | Unset = UNSET
+    min_episode: int | Unset = UNSET
+    max_episode: int | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -31,6 +37,10 @@ class MediaFilterItem:
         episodes: list[int] | Unset = UNSET
         if not isinstance(self.episodes, Unset):
             episodes = self.episodes
+
+        min_episode = self.min_episode
+
+        max_episode = self.max_episode
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,6 +51,10 @@ class MediaFilterItem:
         )
         if episodes is not UNSET:
             field_dict["episodes"] = episodes
+        if min_episode is not UNSET:
+            field_dict["minEpisode"] = min_episode
+        if max_episode is not UNSET:
+            field_dict["maxEpisode"] = max_episode
 
         return field_dict
 
@@ -51,9 +65,15 @@ class MediaFilterItem:
 
         episodes = cast(list[int], _src.pop("episodes", UNSET))
 
+        min_episode = _src.pop("minEpisode", UNSET)
+
+        max_episode = _src.pop("maxEpisode", UNSET)
+
         media_filter_item = cls(
             media_public_id=media_public_id,
             episodes=episodes,
+            min_episode=min_episode,
+            max_episode=max_episode,
         )
 
         media_filter_item.additional_properties = _src

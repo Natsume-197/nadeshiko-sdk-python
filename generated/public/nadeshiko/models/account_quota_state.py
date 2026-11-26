@@ -19,19 +19,27 @@ class AccountQuotaState:
     """
     Attributes:
         user_id (int):  Example: 328.
-        tier_id (None | str): The tier this account sits on, or null if it has none Example: plus.
+        tier_id (None | str): The tier this account is assigned, or null if it has none Example: plus.
+        effective_tier_id (None | str): The tier that produced `monthlyQuotaLimit`: the assigned tier, or the one
+            a Patreon membership earns when that is higher. Null when an override or
+            a fallback decided the limit.
+             Example: pro.
         quota_override (int | None): Per-account limit that wins over the tier when set
-        monthly_quota_limit (int): The limit actually in force, after applying the resolution order Example: 25000.
+        monthly_quota_limit (int): The limit actually in force, after applying the resolution order Example: 30000.
         quota_source (AccountQuotaStateQuotaSource): Which step of the resolution order produced `monthlyQuotaLimit`.
+            `patreon` means a linked, active and recently checked Patreon membership
+            earns a higher tier than the assigned one; it is computed, never stored,
+            so it ends on its own when the membership does.
             `legacy_column` and `default` mean the tier did not resolve, and are worth
             investigating rather than displaying.
-             Example: tier.
+             Example: patreon.
         quota_used (int): Calls billed to this account in the current period Example: 4927.
         period_yyyymm (int): The billing period, as YYYYMM in UTC Example: 202608.
     """
 
     user_id: int
     tier_id: None | str
+    effective_tier_id: None | str
     quota_override: int | None
     monthly_quota_limit: int
     quota_source: AccountQuotaStateQuotaSource
@@ -44,6 +52,9 @@ class AccountQuotaState:
 
         tier_id: None | str
         tier_id = self.tier_id
+
+        effective_tier_id: None | str
+        effective_tier_id = self.effective_tier_id
 
         quota_override: int | None
         quota_override = self.quota_override
@@ -62,6 +73,7 @@ class AccountQuotaState:
             {
                 "userId": user_id,
                 "tierId": tier_id,
+                "effectiveTierId": effective_tier_id,
                 "quotaOverride": quota_override,
                 "monthlyQuotaLimit": monthly_quota_limit,
                 "quotaSource": quota_source,
@@ -84,6 +96,13 @@ class AccountQuotaState:
 
         tier_id = _parse_tier_id(_src.pop("tierId"))
 
+        def _parse_effective_tier_id(data: object) -> None | str:
+            if data is None:
+                return data
+            return cast(None | str, data)
+
+        effective_tier_id = _parse_effective_tier_id(_src.pop("effectiveTierId"))
+
         def _parse_quota_override(data: object) -> int | None:
             if data is None:
                 return data
@@ -102,6 +121,7 @@ class AccountQuotaState:
         account_quota_state = cls(
             user_id=user_id,
             tier_id=tier_id,
+            effective_tier_id=effective_tier_id,
             quota_override=quota_override,
             monthly_quota_limit=monthly_quota_limit,
             quota_source=quota_source,

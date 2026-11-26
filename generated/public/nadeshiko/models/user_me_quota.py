@@ -20,14 +20,15 @@ class UserMeQuota:
     """
     Attributes:
         used (int): Number of API requests used this month. Example: 342.
-        limit (int): Maximum number of API requests allowed per month. Example: 5000.
+        limit (int): Maximum number of API requests allowed per month. Example: 10000.
         remaining (int): Number of API requests remaining this month. Example: 4658.
         period_yyyymm (int): Current month in YYYYMM format. Example: 202602.
         period_start (datetime.datetime): Start of the current month (UTC). Example: 2026-02-01T00:00:00.000Z.
         period_end (datetime.datetime): End of the current month (UTC). Example: 2026-02-28T23:59:59.999Z.
-        tier (None | UserMeQuotaTierType0): The quota tier this account sits on. Null when the account is on none,
-            or when an override is in force and the tier no longer describes the
-            limit.
+        tier (None | UserMeQuotaTierType0): The quota tier that sets this account's limit: the assigned tier, or
+            the one a linked Patreon membership earns when that is higher. Null
+            when the account is on none, or when an override is in force and no
+            tier describes the limit.
         burst (UserMeQuotaBurst): The OTHER limit. Separate from the monthly allowance and enforced per
             API key over a short window, so a caller can exhaust it with plenty of
             month left -- which is why both are surfaced together, and why the two

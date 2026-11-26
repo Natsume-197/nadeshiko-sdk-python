@@ -6,16 +6,51 @@ from .activity_type import ActivityType
 from .add_excluded_media_body import AddExcludedMediaBody
 from .add_favorite_media_body import AddFavoriteMediaBody
 from .add_segment_to_collection_request import AddSegmentToCollectionRequest
+from .admin_content_request import AdminContentRequest
+from .admin_content_request_external_source_type_1 import AdminContentRequestExternalSourceType1
+from .admin_content_request_external_source_type_2_type_1 import (
+    AdminContentRequestExternalSourceType2Type1,
+)
+from .admin_content_request_external_source_type_3_type_1 import (
+    AdminContentRequestExternalSourceType3Type1,
+)
+from .admin_content_request_possible_duplicate_of_type_0 import (
+    AdminContentRequestPossibleDuplicateOfType0,
+)
+from .admin_content_request_possible_duplicate_of_type_0_status import (
+    AdminContentRequestPossibleDuplicateOfType0Status,
+)
+from .admin_content_request_requester_type_0 import AdminContentRequestRequesterType0
+from .admin_email_event import AdminEmailEvent
+from .admin_email_send import AdminEmailSend
+from .admin_email_send_source import AdminEmailSendSource
+from .admin_email_send_status import AdminEmailSendStatus
+from .admin_email_suppression import AdminEmailSuppression
+from .admin_email_suppression_cause import AdminEmailSuppressionCause
+from .admin_overview import AdminOverview
+from .admin_overview_announcement import AdminOverviewAnnouncement
+from .admin_overview_emails import AdminOverviewEmails
+from .admin_overview_reports import AdminOverviewReports
+from .admin_overview_requests import AdminOverviewRequests
+from .admin_overview_users import AdminOverviewUsers
+from .admin_patreon_campaign_member import AdminPatreonCampaignMember
+from .admin_patreon_connection import AdminPatreonConnection
+from .admin_patreon_connection_quota_source import AdminPatreonConnectionQuotaSource
+from .admin_patreon_overview import AdminPatreonOverview
+from .admin_patreon_overview_campaign import AdminPatreonOverviewCampaign
+from .admin_patreon_overview_campaign_status import AdminPatreonOverviewCampaignStatus
+from .admin_patreon_overview_manual_grants_item import AdminPatreonOverviewManualGrantsItem
+from .admin_patreon_overview_manual_grants_item_quota_source import (
+    AdminPatreonOverviewManualGrantsItemQuotaSource,
+)
+from .admin_patreon_overview_summary import AdminPatreonOverviewSummary
+from .admin_patreon_overview_tiers_item import AdminPatreonOverviewTiersItem
 from .admin_report_group import AdminReportGroup
 from .admin_report_group_item import AdminReportGroupItem
 from .admin_report_list_response import AdminReportListResponse
 from .admin_user_with_providers import AdminUserWithProviders
 from .admin_user_with_providers_role import AdminUserWithProvidersRole
 from .affected_count_response import AffectedCountResponse
-from .agent_activity_response import AgentActivityResponse
-from .agent_activity_response_entries_item import AgentActivityResponseEntriesItem
-from .agent_activity_response_entries_item_current import AgentActivityResponseEntriesItemCurrent
-from .agent_activity_response_entries_item_snapshot import AgentActivityResponseEntriesItemSnapshot
 from .announcement import Announcement
 from .announcement_type import AnnouncementType
 from .api_key_scope import ApiKeyScope
@@ -33,6 +68,11 @@ from .collection_type import CollectionType
 from .collection_update_request import CollectionUpdateRequest
 from .collection_visibility import CollectionVisibility
 from .content_rating import ContentRating
+from .content_request import ContentRequest
+from .content_request_category import ContentRequestCategory
+from .content_request_kind import ContentRequestKind
+from .content_request_media_type_0 import ContentRequestMediaType0
+from .content_request_status import ContentRequestStatus
 from .covered_word import CoveredWord
 from .covered_words_response import CoveredWordsResponse
 from .covered_words_response_tier_stats import CoveredWordsResponseTierStats
@@ -44,6 +84,46 @@ from .create_report_request_reason import CreateReportRequestReason
 from .create_user_api_key_body import CreateUserApiKeyBody
 from .create_user_api_key_response_201 import CreateUserApiKeyResponse201
 from .cursor_pagination import CursorPagination
+from .dictionary_candidate import DictionaryCandidate
+from .dictionary_candidate_custom_frequencies_item import DictionaryCandidateCustomFrequenciesItem
+from .dictionary_candidate_entries_item import DictionaryCandidateEntriesItem
+from .dictionary_candidate_entries_item_senses_item import DictionaryCandidateEntriesItemSensesItem
+from .dictionary_candidate_entries_item_senses_item_definitions_item import (
+    DictionaryCandidateEntriesItemSensesItemDefinitionsItem,
+)
+from .dictionary_candidate_entries_item_senses_item_definitions_item_lang import (
+    DictionaryCandidateEntriesItemSensesItemDefinitionsItemLang,
+)
+from .dictionary_candidate_entries_item_senses_item_tags_item import (
+    DictionaryCandidateEntriesItemSensesItemTagsItem,
+)
+from .dictionary_candidate_entries_item_senses_item_tags_item_category import (
+    DictionaryCandidateEntriesItemSensesItemTagsItemCategory,
+)
+from .dictionary_candidate_forms_item import DictionaryCandidateFormsItem
+from .dictionary_candidate_forms_item_script import DictionaryCandidateFormsItemScript
+from .dictionary_candidate_frequency_by_category_item import (
+    DictionaryCandidateFrequencyByCategoryItem,
+)
+from .dictionary_candidate_frequency_by_category_item_category import (
+    DictionaryCandidateFrequencyByCategoryItemCategory,
+)
+from .dictionary_candidate_furigana_item import DictionaryCandidateFuriganaItem
+from .dictionary_candidate_parts_item import DictionaryCandidatePartsItem
+from .dictionary_candidate_pitch_item import DictionaryCandidatePitchItem
+from .dictionary_kanji import DictionaryKanji
+from .dictionary_kanji_components_item import DictionaryKanjiComponentsItem
+from .dictionary_kanji_meanings_language import DictionaryKanjiMeaningsLanguage
+from .dictionary_kanji_radical_type_0 import DictionaryKanjiRadicalType0
+from .dictionary_kanji_readings_item import DictionaryKanjiReadingsItem
+from .dictionary_kanji_readings_item_examples_item import DictionaryKanjiReadingsItemExamplesItem
+from .dictionary_kanji_readings_item_examples_item_furigana_item import (
+    DictionaryKanjiReadingsItemExamplesItemFuriganaItem,
+)
+from .dictionary_kanji_readings_item_kind import DictionaryKanjiReadingsItemKind
+from .dictionary_kanji_related import DictionaryKanjiRelated
+from .dictionary_kanji_word_ref import DictionaryKanjiWordRef
+from .dictionary_kanji_words_item import DictionaryKanjiWordsItem
 from .episode import Episode
 from .episode_create_request import EpisodeCreateRequest
 from .episode_list_response import EpisodeListResponse
@@ -120,6 +200,9 @@ from .media_update_request_season_name import MediaUpdateRequestSeasonName
 from .media_update_request_storage import MediaUpdateRequestStorage
 from .moderate_episode_segments_request import ModerateEpisodeSegmentsRequest
 from .moderate_episode_segments_request_action import ModerateEpisodeSegmentsRequestAction
+from .notification import Notification
+from .notification_kind import NotificationKind
+from .notification_payload import NotificationPayload
 from .patreon_connection import PatreonConnection
 from .report import Report
 from .report_data_type_0 import ReportDataType0
@@ -135,12 +218,6 @@ from .report_target_segment_input import ReportTargetSegmentInput
 from .report_target_segment_input_type import ReportTargetSegmentInputType
 from .report_target_segment_type import ReportTargetSegmentType
 from .report_target_type import ReportTargetType
-from .roadmap_item import RoadmapItem
-from .roadmap_item_kind import RoadmapItemKind
-from .roadmap_item_status import RoadmapItemStatus
-from .roadmap_item_write import RoadmapItemWrite
-from .roadmap_item_write_kind import RoadmapItemWriteKind
-from .roadmap_item_write_status import RoadmapItemWriteStatus
 from .search_filters import SearchFilters
 from .search_filters_languages_type_0_item import SearchFiltersLanguagesType0Item
 from .search_filters_languages_type_1 import SearchFiltersLanguagesType1
@@ -151,6 +228,7 @@ from .search_filters_segment_length_chars import SearchFiltersSegmentLengthChars
 from .search_media_filters import SearchMediaFilters
 from .search_media_request import SearchMediaRequest
 from .search_multiple_query import SearchMultipleQuery
+from .search_multiple_query_match_mode import SearchMultipleQueryMatchMode
 from .search_multiple_request import SearchMultipleRequest
 from .search_multiple_response import SearchMultipleResponse
 from .search_multiple_response_includes import SearchMultipleResponseIncludes
@@ -160,6 +238,7 @@ from .search_pagination_estimated_total_hits_relation import (
     SearchPaginationEstimatedTotalHitsRelation,
 )
 from .search_query import SearchQuery
+from .search_query_match_mode import SearchQueryMatchMode
 from .search_request import SearchRequest
 from .search_response import SearchResponse
 from .search_response_includes import SearchResponseIncludes
@@ -199,8 +278,6 @@ from .segment_update_request_text_en import SegmentUpdateRequestTextEn
 from .segment_update_request_text_es import SegmentUpdateRequestTextEs
 from .segment_update_request_text_ja import SegmentUpdateRequestTextJa
 from .segment_urls import SegmentUrls
-from .shirabe_connection import ShirabeConnection
-from .shirabe_connection_dictionary_names import ShirabeConnectionDictionaryNames
 from .stats_overview import StatsOverview
 from .stats_overview_translations import StatsOverviewTranslations
 from .tier import Tier
@@ -209,6 +286,29 @@ from .token_f_item import TokenFItem
 from .token_inflection import TokenInflection
 from .token_kind import TokenKind
 from .token_parts_item import TokenPartsItem
+from .tracker_state import TrackerState
+from .tracker_state_configured_providers_item import TrackerStateConfiguredProvidersItem
+from .tracker_state_connection_type_0 import TrackerStateConnectionType0
+from .tracker_state_connection_type_0_effective_settings import (
+    TrackerStateConnectionType0EffectiveSettings,
+)
+from .tracker_state_connection_type_0_provider import TrackerStateConnectionType0Provider
+from .tracker_state_connection_type_0_settings import TrackerStateConnectionType0Settings
+from .tracker_state_coverage_type_0 import TrackerStateCoverageType0
+from .tracker_state_coverage_type_0_by_status import TrackerStateCoverageType0ByStatus
+from .tracker_state_entries_item import TrackerStateEntriesItem
+from .tracker_state_entries_item_status import TrackerStateEntriesItemStatus
+from .tracker_state_missing_anime_item import TrackerStateMissingAnimeItem
+from .tracker_state_missing_anime_item_external_source import (
+    TrackerStateMissingAnimeItemExternalSource,
+)
+from .tracker_state_missing_anime_item_request_type_0 import (
+    TrackerStateMissingAnimeItemRequestType0,
+)
+from .tracker_state_missing_anime_item_request_type_0_status import (
+    TrackerStateMissingAnimeItemRequestType0Status,
+)
+from .tracker_state_missing_anime_item_status import TrackerStateMissingAnimeItemStatus
 from .unsubscribe_receipt import UnsubscribeReceipt
 from .update_account_quota_request import UpdateAccountQuotaRequest
 from .update_collection_segment_request import UpdateCollectionSegmentRequest
@@ -218,6 +318,12 @@ from .user_activity_request import UserActivityRequest
 from .user_activity_request_activity_type import UserActivityRequestActivityType
 from .user_activity_stats import UserActivityStats
 from .user_activity_stats_top_media_item import UserActivityStatsTopMediaItem
+from .user_dictionary import UserDictionary
+from .user_dictionary_list_response import UserDictionaryListResponse
+from .user_dictionary_list_response_builtin import UserDictionaryListResponseBuiltin
+from .user_dictionary_list_response_quota import UserDictionaryListResponseQuota
+from .user_dictionary_status import UserDictionaryStatus
+from .user_dictionary_upload_result import UserDictionaryUploadResult
 from .user_export_collection import UserExportCollection
 from .user_export_response import UserExportResponse
 from .user_export_response_media_affinity_item import UserExportResponseMediaAffinityItem
@@ -237,6 +343,9 @@ from .user_preferences_content_rating_preferences import UserPreferencesContentR
 from .user_preferences_content_rating_preferences_nsfw import (
     UserPreferencesContentRatingPreferencesNsfw,
 )
+from .user_preferences_custom_theme_type_0 import UserPreferencesCustomThemeType0
+from .user_preferences_custom_theme_type_0_base import UserPreferencesCustomThemeType0Base
+from .user_preferences_custom_theme_type_0_preset import UserPreferencesCustomThemeType0Preset
 from .user_preferences_default_search_category import UserPreferencesDefaultSearchCategory
 from .user_preferences_familiar_media import UserPreferencesFamiliarMedia
 from .user_preferences_favorite_media_item import UserPreferencesFavoriteMediaItem
@@ -245,6 +354,7 @@ from .user_preferences_media_card_default import UserPreferencesMediaCardDefault
 from .user_preferences_media_name_language import UserPreferencesMediaNameLanguage
 from .user_preferences_product_emails import UserPreferencesProductEmails
 from .user_preferences_search_history import UserPreferencesSearchHistory
+from .user_preferences_site_notifications import UserPreferencesSiteNotifications
 from .user_preferences_translation_languages_item import UserPreferencesTranslationLanguagesItem
 from .user_preferences_translation_visibility_preferences import (
     UserPreferencesTranslationVisibilityPreferences,
@@ -260,6 +370,12 @@ from .user_preferences_word_popup_definition_size import UserPreferencesWordPopu
 from .word_coverage_tier import WordCoverageTier
 from .word_match import WordMatch
 from .word_match_media import WordMatchMedia
+from .word_watch import WordWatch
+from .word_watch_match_mode import WordWatchMatchMode
+from .word_watch_mode import WordWatchMode
+from .word_watch_set_response import WordWatchSetResponse
+from .word_watch_set_response_outcome import WordWatchSetResponseOutcome
+from .word_watch_status import WordWatchStatus
 
 __all__ = (
     "AccountQuotaState",
@@ -268,16 +384,41 @@ __all__ = (
     "AddExcludedMediaBody",
     "AddFavoriteMediaBody",
     "AddSegmentToCollectionRequest",
+    "AdminContentRequest",
+    "AdminContentRequestExternalSourceType1",
+    "AdminContentRequestExternalSourceType2Type1",
+    "AdminContentRequestExternalSourceType3Type1",
+    "AdminContentRequestPossibleDuplicateOfType0",
+    "AdminContentRequestPossibleDuplicateOfType0Status",
+    "AdminContentRequestRequesterType0",
+    "AdminEmailEvent",
+    "AdminEmailSend",
+    "AdminEmailSendSource",
+    "AdminEmailSendStatus",
+    "AdminEmailSuppression",
+    "AdminEmailSuppressionCause",
+    "AdminOverview",
+    "AdminOverviewAnnouncement",
+    "AdminOverviewEmails",
+    "AdminOverviewReports",
+    "AdminOverviewRequests",
+    "AdminOverviewUsers",
+    "AdminPatreonCampaignMember",
+    "AdminPatreonConnection",
+    "AdminPatreonConnectionQuotaSource",
+    "AdminPatreonOverview",
+    "AdminPatreonOverviewCampaign",
+    "AdminPatreonOverviewCampaignStatus",
+    "AdminPatreonOverviewManualGrantsItem",
+    "AdminPatreonOverviewManualGrantsItemQuotaSource",
+    "AdminPatreonOverviewSummary",
+    "AdminPatreonOverviewTiersItem",
     "AdminReportGroup",
     "AdminReportGroupItem",
     "AdminReportListResponse",
     "AdminUserWithProviders",
     "AdminUserWithProvidersRole",
     "AffectedCountResponse",
-    "AgentActivityResponse",
-    "AgentActivityResponseEntriesItem",
-    "AgentActivityResponseEntriesItemCurrent",
-    "AgentActivityResponseEntriesItemSnapshot",
     "Announcement",
     "AnnouncementType",
     "ApiKeyScope",
@@ -295,6 +436,11 @@ __all__ = (
     "CollectionUpdateRequest",
     "CollectionVisibility",
     "ContentRating",
+    "ContentRequest",
+    "ContentRequestCategory",
+    "ContentRequestKind",
+    "ContentRequestMediaType0",
+    "ContentRequestStatus",
     "CoveredWord",
     "CoveredWordsResponse",
     "CoveredWordsResponseTierStats",
@@ -306,6 +452,32 @@ __all__ = (
     "CreateUserApiKeyBody",
     "CreateUserApiKeyResponse201",
     "CursorPagination",
+    "DictionaryCandidate",
+    "DictionaryCandidateCustomFrequenciesItem",
+    "DictionaryCandidateEntriesItem",
+    "DictionaryCandidateEntriesItemSensesItem",
+    "DictionaryCandidateEntriesItemSensesItemDefinitionsItem",
+    "DictionaryCandidateEntriesItemSensesItemDefinitionsItemLang",
+    "DictionaryCandidateEntriesItemSensesItemTagsItem",
+    "DictionaryCandidateEntriesItemSensesItemTagsItemCategory",
+    "DictionaryCandidateFormsItem",
+    "DictionaryCandidateFormsItemScript",
+    "DictionaryCandidateFrequencyByCategoryItem",
+    "DictionaryCandidateFrequencyByCategoryItemCategory",
+    "DictionaryCandidateFuriganaItem",
+    "DictionaryCandidatePartsItem",
+    "DictionaryCandidatePitchItem",
+    "DictionaryKanji",
+    "DictionaryKanjiComponentsItem",
+    "DictionaryKanjiMeaningsLanguage",
+    "DictionaryKanjiRadicalType0",
+    "DictionaryKanjiReadingsItem",
+    "DictionaryKanjiReadingsItemExamplesItem",
+    "DictionaryKanjiReadingsItemExamplesItemFuriganaItem",
+    "DictionaryKanjiReadingsItemKind",
+    "DictionaryKanjiRelated",
+    "DictionaryKanjiWordRef",
+    "DictionaryKanjiWordsItem",
     "Episode",
     "EpisodeCreateRequest",
     "EpisodeListResponse",
@@ -378,6 +550,9 @@ __all__ = (
     "MediaUpdateRequestStorage",
     "ModerateEpisodeSegmentsRequest",
     "ModerateEpisodeSegmentsRequestAction",
+    "Notification",
+    "NotificationKind",
+    "NotificationPayload",
     "PatreonConnection",
     "Report",
     "ReportDataType0",
@@ -393,12 +568,6 @@ __all__ = (
     "ReportTargetSegmentInputType",
     "ReportTargetSegmentType",
     "ReportTargetType",
-    "RoadmapItem",
-    "RoadmapItemKind",
-    "RoadmapItemStatus",
-    "RoadmapItemWrite",
-    "RoadmapItemWriteKind",
-    "RoadmapItemWriteStatus",
     "SearchFilters",
     "SearchFiltersLanguagesType0Item",
     "SearchFiltersLanguagesType1",
@@ -409,6 +578,7 @@ __all__ = (
     "SearchMediaFilters",
     "SearchMediaRequest",
     "SearchMultipleQuery",
+    "SearchMultipleQueryMatchMode",
     "SearchMultipleRequest",
     "SearchMultipleResponse",
     "SearchMultipleResponseIncludes",
@@ -416,6 +586,7 @@ __all__ = (
     "SearchPagination",
     "SearchPaginationEstimatedTotalHitsRelation",
     "SearchQuery",
+    "SearchQueryMatchMode",
     "SearchRequest",
     "SearchResponse",
     "SearchResponseIncludes",
@@ -455,8 +626,6 @@ __all__ = (
     "SegmentUpdateRequestTextEs",
     "SegmentUpdateRequestTextJa",
     "SegmentUrls",
-    "ShirabeConnection",
-    "ShirabeConnectionDictionaryNames",
     "StatsOverview",
     "StatsOverviewTranslations",
     "Tier",
@@ -465,6 +634,21 @@ __all__ = (
     "TokenInflection",
     "TokenKind",
     "TokenPartsItem",
+    "TrackerState",
+    "TrackerStateConfiguredProvidersItem",
+    "TrackerStateConnectionType0",
+    "TrackerStateConnectionType0EffectiveSettings",
+    "TrackerStateConnectionType0Provider",
+    "TrackerStateConnectionType0Settings",
+    "TrackerStateCoverageType0",
+    "TrackerStateCoverageType0ByStatus",
+    "TrackerStateEntriesItem",
+    "TrackerStateEntriesItemStatus",
+    "TrackerStateMissingAnimeItem",
+    "TrackerStateMissingAnimeItemExternalSource",
+    "TrackerStateMissingAnimeItemRequestType0",
+    "TrackerStateMissingAnimeItemRequestType0Status",
+    "TrackerStateMissingAnimeItemStatus",
     "UnsubscribeReceipt",
     "UpdateAccountQuotaRequest",
     "UpdateCollectionSegmentRequest",
@@ -474,6 +658,12 @@ __all__ = (
     "UserActivityRequestActivityType",
     "UserActivityStats",
     "UserActivityStatsTopMediaItem",
+    "UserDictionary",
+    "UserDictionaryListResponse",
+    "UserDictionaryListResponseBuiltin",
+    "UserDictionaryListResponseQuota",
+    "UserDictionaryStatus",
+    "UserDictionaryUploadResult",
     "UserExportCollection",
     "UserExportResponse",
     "UserExportResponseMediaAffinityItem",
@@ -489,6 +679,9 @@ __all__ = (
     "UserPreferencesAnkiProfilesItemFieldsItem",
     "UserPreferencesContentRatingPreferences",
     "UserPreferencesContentRatingPreferencesNsfw",
+    "UserPreferencesCustomThemeType0",
+    "UserPreferencesCustomThemeType0Base",
+    "UserPreferencesCustomThemeType0Preset",
     "UserPreferencesDefaultSearchCategory",
     "UserPreferencesFamiliarMedia",
     "UserPreferencesFavoriteMediaItem",
@@ -497,6 +690,7 @@ __all__ = (
     "UserPreferencesMediaNameLanguage",
     "UserPreferencesProductEmails",
     "UserPreferencesSearchHistory",
+    "UserPreferencesSiteNotifications",
     "UserPreferencesTranslationLanguagesItem",
     "UserPreferencesTranslationVisibilityPreferences",
     "UserPreferencesTranslationVisibilityPreferencesEN",
@@ -506,4 +700,10 @@ __all__ = (
     "WordCoverageTier",
     "WordMatch",
     "WordMatchMedia",
+    "WordWatch",
+    "WordWatchMatchMode",
+    "WordWatchMode",
+    "WordWatchSetResponse",
+    "WordWatchSetResponseOutcome",
+    "WordWatchStatus",
 )

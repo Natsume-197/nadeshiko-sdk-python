@@ -11,13 +11,14 @@ T = TypeVar("T", bound="UserMeQuotaTierType0")
 
 @_attrs_define
 class UserMeQuotaTierType0:
-    """The quota tier this account sits on. Null when the account is on none,
-    or when an override is in force and the tier no longer describes the
-    limit.
+    """The quota tier that sets this account's limit: the assigned tier, or
+    the one a linked Patreon membership earns when that is higher. Null
+    when the account is on none, or when an override is in force and no
+    tier describes the limit.
 
         Attributes:
             id (str):  Example: plus.
-            display_name (str):  Example: Plus.
+            display_name (str):  Example: Seed.
     """
 
     id: str

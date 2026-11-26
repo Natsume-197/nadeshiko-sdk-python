@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -30,11 +30,13 @@ if TYPE_CHECKING:
     from ..models.user_preferences_content_rating_preferences import (
         UserPreferencesContentRatingPreferences,
     )
+    from ..models.user_preferences_custom_theme_type_0 import UserPreferencesCustomThemeType0
     from ..models.user_preferences_familiar_media import UserPreferencesFamiliarMedia
     from ..models.user_preferences_favorite_media_item import UserPreferencesFavoriteMediaItem
     from ..models.user_preferences_hidden_media_item import UserPreferencesHiddenMediaItem
     from ..models.user_preferences_product_emails import UserPreferencesProductEmails
     from ..models.user_preferences_search_history import UserPreferencesSearchHistory
+    from ..models.user_preferences_site_notifications import UserPreferencesSiteNotifications
     from ..models.user_preferences_translation_visibility_preferences import (
         UserPreferencesTranslationVisibilityPreferences,
     )
@@ -139,6 +141,15 @@ class UserPreferences:
             Does NOT govern transactional mail. Sign-in links and address verification
             are the account working rather than news about it, and honouring this flag
             for them would let somebody lock themselves out by unsubscribing.
+        site_notifications (UserPreferencesSiteNotifications | Unset): The site channel of the notification centre (the
+            bell), per category.
+            Absent means on. Email has its own switches in `productEmails`.
+        custom_theme (None | Unset | UserPreferencesCustomThemeType0): A patron's custom theme: a light or dark base
+            plus an accent and a page
+            background. Writing a non-null value needs an active Patreon membership
+            (any paid tier) or an admin account; `null` clears it. Kept when a
+            membership lapses, but left out of the response until it is active again,
+            so the site falls back to the dark theme.
     """
 
     media_name_language: UserPreferencesMediaNameLanguage | Unset = UNSET
@@ -157,9 +168,13 @@ class UserPreferences:
     favorite_media: list[UserPreferencesFavoriteMediaItem] | Unset = UNSET
     familiar_media: UserPreferencesFamiliarMedia | Unset = UNSET
     product_emails: UserPreferencesProductEmails | Unset = UNSET
+    site_notifications: UserPreferencesSiteNotifications | Unset = UNSET
+    custom_theme: None | Unset | UserPreferencesCustomThemeType0 = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.user_preferences_custom_theme_type_0 import UserPreferencesCustomThemeType0  # noqa: PLC0415
+
         media_name_language: str | Unset = UNSET
         if not isinstance(self.media_name_language, Unset):
             media_name_language = self.media_name_language
@@ -231,6 +246,18 @@ class UserPreferences:
         if not isinstance(self.product_emails, Unset):
             product_emails = self.product_emails.to_dict()
 
+        site_notifications: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.site_notifications, Unset):
+            site_notifications = self.site_notifications.to_dict()
+
+        custom_theme: dict[str, Any] | None | Unset
+        if isinstance(self.custom_theme, Unset):
+            custom_theme = UNSET
+        elif isinstance(self.custom_theme, UserPreferencesCustomThemeType0):
+            custom_theme = self.custom_theme.to_dict()
+        else:
+            custom_theme = self.custom_theme
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -262,6 +289,10 @@ class UserPreferences:
             field_dict["familiarMedia"] = familiar_media
         if product_emails is not UNSET:
             field_dict["productEmails"] = product_emails
+        if site_notifications is not UNSET:
+            field_dict["siteNotifications"] = site_notifications
+        if custom_theme is not UNSET:
+            field_dict["customTheme"] = custom_theme
 
         return field_dict
 
@@ -271,11 +302,13 @@ class UserPreferences:
         from ..models.user_preferences_content_rating_preferences import (
             UserPreferencesContentRatingPreferences,  # noqa: PLC0415
         )
+        from ..models.user_preferences_custom_theme_type_0 import UserPreferencesCustomThemeType0  # noqa: PLC0415
         from ..models.user_preferences_familiar_media import UserPreferencesFamiliarMedia  # noqa: PLC0415
         from ..models.user_preferences_favorite_media_item import UserPreferencesFavoriteMediaItem  # noqa: PLC0415
         from ..models.user_preferences_hidden_media_item import UserPreferencesHiddenMediaItem  # noqa: PLC0415
         from ..models.user_preferences_product_emails import UserPreferencesProductEmails  # noqa: PLC0415
         from ..models.user_preferences_search_history import UserPreferencesSearchHistory  # noqa: PLC0415
+        from ..models.user_preferences_site_notifications import UserPreferencesSiteNotifications  # noqa: PLC0415
         from ..models.user_preferences_translation_visibility_preferences import (
             UserPreferencesTranslationVisibilityPreferences,  # noqa: PLC0415
         )
@@ -404,6 +437,30 @@ class UserPreferences:
         else:
             product_emails = UserPreferencesProductEmails.from_dict(_product_emails)
 
+        _site_notifications = _src.pop("siteNotifications", UNSET)
+        site_notifications: UserPreferencesSiteNotifications | Unset
+        if isinstance(_site_notifications, Unset):
+            site_notifications = UNSET
+        else:
+            site_notifications = UserPreferencesSiteNotifications.from_dict(_site_notifications)
+
+        def _parse_custom_theme(data: object) -> None | Unset | UserPreferencesCustomThemeType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                custom_theme_type_0 = UserPreferencesCustomThemeType0.from_dict(data)
+
+                return custom_theme_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UserPreferencesCustomThemeType0, data)
+
+        custom_theme = _parse_custom_theme(_src.pop("customTheme", UNSET))
+
         user_preferences = cls(
             media_name_language=media_name_language,
             content_rating_preferences=content_rating_preferences,
@@ -419,6 +476,8 @@ class UserPreferences:
             favorite_media=favorite_media,
             familiar_media=familiar_media,
             product_emails=product_emails,
+            site_notifications=site_notifications,
+            custom_theme=custom_theme,
         )
 
         user_preferences.additional_properties = _src
