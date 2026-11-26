@@ -31,6 +31,12 @@ class UserDictionary:
         term_count (int):
         frequency_count (int):
         pitch_count (int):
+        has_kanji (bool): Holds kanji entries (Yomitan `kanji_bank`) for the kanji card.
+        has_kanji_frequency (bool): Holds kanji frequencies (Yomitan `kanji_meta_bank`).
+        has_kanji_terms (bool): A kanji dictionary shipped as a term dictionary (at least 10% single-kanji headwords):
+            its single-kanji entries answer the kanji card too.
+        kanji_count (int):
+        kanji_frequency_count (int):
         zip_bytes (int):
         sqlite_bytes (int):
         status (UserDictionaryStatus):
@@ -57,6 +63,11 @@ class UserDictionary:
     term_count: int
     frequency_count: int
     pitch_count: int
+    has_kanji: bool
+    has_kanji_frequency: bool
+    has_kanji_terms: bool
+    kanji_count: int
+    kanji_frequency_count: int
     zip_bytes: int
     sqlite_bytes: int
     status: UserDictionaryStatus
@@ -101,6 +112,16 @@ class UserDictionary:
 
         pitch_count = self.pitch_count
 
+        has_kanji = self.has_kanji
+
+        has_kanji_frequency = self.has_kanji_frequency
+
+        has_kanji_terms = self.has_kanji_terms
+
+        kanji_count = self.kanji_count
+
+        kanji_frequency_count = self.kanji_frequency_count
+
         zip_bytes = self.zip_bytes
 
         sqlite_bytes = self.sqlite_bytes
@@ -140,6 +161,11 @@ class UserDictionary:
                 "termCount": term_count,
                 "frequencyCount": frequency_count,
                 "pitchCount": pitch_count,
+                "hasKanji": has_kanji,
+                "hasKanjiFrequency": has_kanji_frequency,
+                "hasKanjiTerms": has_kanji_terms,
+                "kanjiCount": kanji_count,
+                "kanjiFrequencyCount": kanji_frequency_count,
                 "zipBytes": zip_bytes,
                 "sqliteBytes": sqlite_bytes,
                 "status": status,
@@ -205,6 +231,16 @@ class UserDictionary:
 
         pitch_count = _src.pop("pitchCount")
 
+        has_kanji = _src.pop("hasKanji")
+
+        has_kanji_frequency = _src.pop("hasKanjiFrequency")
+
+        has_kanji_terms = _src.pop("hasKanjiTerms")
+
+        kanji_count = _src.pop("kanjiCount")
+
+        kanji_frequency_count = _src.pop("kanjiFrequencyCount")
+
         zip_bytes = _src.pop("zipBytes")
 
         sqlite_bytes = _src.pop("sqliteBytes")
@@ -253,6 +289,11 @@ class UserDictionary:
             term_count=term_count,
             frequency_count=frequency_count,
             pitch_count=pitch_count,
+            has_kanji=has_kanji,
+            has_kanji_frequency=has_kanji_frequency,
+            has_kanji_terms=has_kanji_terms,
+            kanji_count=kanji_count,
+            kanji_frequency_count=kanji_frequency_count,
             zip_bytes=zip_bytes,
             sqlite_bytes=sqlite_bytes,
             status=status,

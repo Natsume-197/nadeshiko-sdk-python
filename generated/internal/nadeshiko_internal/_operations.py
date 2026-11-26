@@ -55,6 +55,7 @@ OPERATIONS: tuple[OperationMetadata, ...] = (
     OperationMetadata(name="get_content_request_allowance", module_path=".api.requests.get_content_request_allowance", paginated=False, doc="The signed-in reader's request allowance and votes"),
     OperationMetadata(name="get_covered_words", module_path=".api.stats.get_covered_words", paginated=True, doc="List words with coverage information"),
     OperationMetadata(name="get_dictionary_kanji", module_path=".api.search.get_dictionary_kanji", paginated=False, doc="One kanji's card from Nadeshiko's own dictionary, for our own server only"),
+    OperationMetadata(name="get_dictionary_kanji_custom", module_path=".api.search.get_dictionary_kanji_custom", paginated=False, doc="One kanji from the reader's own kanji dictionaries, for our own server only"),
     OperationMetadata(name="get_dictionary_kanji_index", module_path=".api.search.get_dictionary_kanji_index", paginated=False, doc="Every jōyō and JLPT kanji, for our own server only"),
     OperationMetadata(name="get_email_preferences_by_token", module_path=".api.email.get_email_preferences_by_token", paginated=False, doc="Read email preferences from an unsubscribe token"),
     OperationMetadata(name="get_episode", module_path=".api.media.get_episode", paginated=False, doc="Get single episode"),

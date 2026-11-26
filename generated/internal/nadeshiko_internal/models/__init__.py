@@ -126,6 +126,31 @@ from .dictionary_candidate_parts_item import DictionaryCandidatePartsItem
 from .dictionary_candidate_pitch_item import DictionaryCandidatePitchItem
 from .dictionary_kanji import DictionaryKanji
 from .dictionary_kanji_components_item import DictionaryKanjiComponentsItem
+from .dictionary_kanji_custom import DictionaryKanjiCustom
+from .dictionary_kanji_custom_entries_item import DictionaryKanjiCustomEntriesItem
+from .dictionary_kanji_custom_entries_item_senses_item import (
+    DictionaryKanjiCustomEntriesItemSensesItem,
+)
+from .dictionary_kanji_custom_entries_item_senses_item_definitions_item import (
+    DictionaryKanjiCustomEntriesItemSensesItemDefinitionsItem,
+)
+from .dictionary_kanji_custom_entries_item_senses_item_definitions_item_lang import (
+    DictionaryKanjiCustomEntriesItemSensesItemDefinitionsItemLang,
+)
+from .dictionary_kanji_custom_entries_item_senses_item_tags_item import (
+    DictionaryKanjiCustomEntriesItemSensesItemTagsItem,
+)
+from .dictionary_kanji_custom_entries_item_senses_item_tags_item_category import (
+    DictionaryKanjiCustomEntriesItemSensesItemTagsItemCategory,
+)
+from .dictionary_kanji_custom_entries_item_stats_item import (
+    DictionaryKanjiCustomEntriesItemStatsItem,
+)
+from .dictionary_kanji_custom_entries_item_tags_item import DictionaryKanjiCustomEntriesItemTagsItem
+from .dictionary_kanji_custom_entries_item_tags_item_category import (
+    DictionaryKanjiCustomEntriesItemTagsItemCategory,
+)
+from .dictionary_kanji_custom_frequencies_item import DictionaryKanjiCustomFrequenciesItem
 from .dictionary_kanji_meanings_language import DictionaryKanjiMeaningsLanguage
 from .dictionary_kanji_radical_type_0 import DictionaryKanjiRadicalType0
 from .dictionary_kanji_readings_item import DictionaryKanjiReadingsItem
@@ -585,6 +610,17 @@ __all__ = (
     "DictionaryCandidatePitchItem",
     "DictionaryKanji",
     "DictionaryKanjiComponentsItem",
+    "DictionaryKanjiCustom",
+    "DictionaryKanjiCustomEntriesItem",
+    "DictionaryKanjiCustomEntriesItemSensesItem",
+    "DictionaryKanjiCustomEntriesItemSensesItemDefinitionsItem",
+    "DictionaryKanjiCustomEntriesItemSensesItemDefinitionsItemLang",
+    "DictionaryKanjiCustomEntriesItemSensesItemTagsItem",
+    "DictionaryKanjiCustomEntriesItemSensesItemTagsItemCategory",
+    "DictionaryKanjiCustomEntriesItemStatsItem",
+    "DictionaryKanjiCustomEntriesItemTagsItem",
+    "DictionaryKanjiCustomEntriesItemTagsItemCategory",
+    "DictionaryKanjiCustomFrequenciesItem",
     "DictionaryKanjiMeaningsLanguage",
     "DictionaryKanjiRadicalType0",
     "DictionaryKanjiReadingsItem",
