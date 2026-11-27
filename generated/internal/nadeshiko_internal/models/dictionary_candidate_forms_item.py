@@ -10,6 +10,7 @@ from ..models.dictionary_candidate_forms_item_script import (
     DictionaryCandidateFormsItemScript,
     check_dictionary_candidate_forms_item_script,
 )
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DictionaryCandidateFormsItem")
 
@@ -21,11 +22,15 @@ class DictionaryCandidateFormsItem:
         text (str):
         script (DictionaryCandidateFormsItemScript):
         common (bool):
+        frequency (int | Unset): Corpus rank of this specific spelling when enough occurrences exist.
+        share (float | Unset): Fraction (0..1) of this word's corpus occurrences written in this spelling.
     """
 
     text: str
     script: DictionaryCandidateFormsItemScript
     common: bool
+    frequency: int | Unset = UNSET
+    share: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -34,6 +39,10 @@ class DictionaryCandidateFormsItem:
         script: str = self.script
 
         common = self.common
+
+        frequency = self.frequency
+
+        share = self.share
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -44,6 +53,10 @@ class DictionaryCandidateFormsItem:
                 "common": common,
             }
         )
+        if frequency is not UNSET:
+            field_dict["frequency"] = frequency
+        if share is not UNSET:
+            field_dict["share"] = share
 
         return field_dict
 
@@ -56,10 +69,16 @@ class DictionaryCandidateFormsItem:
 
         common = _src.pop("common")
 
+        frequency = _src.pop("frequency", UNSET)
+
+        share = _src.pop("share", UNSET)
+
         dictionary_candidate_forms_item = cls(
             text=text,
             script=script,
             common=common,
+            frequency=frequency,
+            share=share,
         )
 
         dictionary_candidate_forms_item.additional_properties = _src
