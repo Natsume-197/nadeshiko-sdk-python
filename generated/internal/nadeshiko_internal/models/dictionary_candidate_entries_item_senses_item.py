@@ -9,8 +9,14 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.dictionary_candidate_entries_item_senses_item_antonyms_item import (
+        DictionaryCandidateEntriesItemSensesItemAntonymsItem,
+    )
     from ..models.dictionary_candidate_entries_item_senses_item_definitions_item import (
         DictionaryCandidateEntriesItemSensesItemDefinitionsItem,
+    )
+    from ..models.dictionary_candidate_entries_item_senses_item_see_also_item import (
+        DictionaryCandidateEntriesItemSensesItemSeeAlsoItem,
     )
     from ..models.dictionary_candidate_entries_item_senses_item_tags_item import (
         DictionaryCandidateEntriesItemSensesItemTagsItem,
@@ -28,12 +34,18 @@ class DictionaryCandidateEntriesItemSensesItem:
         definitions (list[DictionaryCandidateEntriesItemSensesItemDefinitionsItem]):
         tags (list[DictionaryCandidateEntriesItemSensesItemTagsItem]):
         notes (list[str] | Unset):
+        see_also (list[DictionaryCandidateEntriesItemSensesItemSeeAlsoItem] | Unset): Related cross-referenced JMdict
+            entries for this sense (e.g. 彼氏 for 彼女).
+        antonyms (list[DictionaryCandidateEntriesItemSensesItemAntonymsItem] | Unset): Antonym cross-referenced JMdict
+            entries for this sense.
     """
 
     position: int
     definitions: list[DictionaryCandidateEntriesItemSensesItemDefinitionsItem]
     tags: list[DictionaryCandidateEntriesItemSensesItemTagsItem]
     notes: list[str] | Unset = UNSET
+    see_also: list[DictionaryCandidateEntriesItemSensesItemSeeAlsoItem] | Unset = UNSET
+    antonyms: list[DictionaryCandidateEntriesItemSensesItemAntonymsItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -53,6 +65,20 @@ class DictionaryCandidateEntriesItemSensesItem:
         if not isinstance(self.notes, Unset):
             notes = self.notes
 
+        see_also: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.see_also, Unset):
+            see_also = []
+            for see_also_item_data in self.see_also:
+                see_also_item = see_also_item_data.to_dict()
+                see_also.append(see_also_item)
+
+        antonyms: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.antonyms, Unset):
+            antonyms = []
+            for antonyms_item_data in self.antonyms:
+                antonyms_item = antonyms_item_data.to_dict()
+                antonyms.append(antonyms_item)
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -64,13 +90,23 @@ class DictionaryCandidateEntriesItemSensesItem:
         )
         if notes is not UNSET:
             field_dict["notes"] = notes
+        if see_also is not UNSET:
+            field_dict["seeAlso"] = see_also
+        if antonyms is not UNSET:
+            field_dict["antonyms"] = antonyms
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.dictionary_candidate_entries_item_senses_item_antonyms_item import (
+            DictionaryCandidateEntriesItemSensesItemAntonymsItem,  # noqa: PLC0415
+        )
         from ..models.dictionary_candidate_entries_item_senses_item_definitions_item import (
             DictionaryCandidateEntriesItemSensesItemDefinitionsItem,  # noqa: PLC0415
+        )
+        from ..models.dictionary_candidate_entries_item_senses_item_see_also_item import (
+            DictionaryCandidateEntriesItemSensesItemSeeAlsoItem,  # noqa: PLC0415
         )
         from ..models.dictionary_candidate_entries_item_senses_item_tags_item import (
             DictionaryCandidateEntriesItemSensesItemTagsItem,  # noqa: PLC0415
@@ -97,11 +133,35 @@ class DictionaryCandidateEntriesItemSensesItem:
 
         notes = cast(list[str], _src.pop("notes", UNSET))
 
+        _see_also = _src.pop("seeAlso", UNSET)
+        see_also: list[DictionaryCandidateEntriesItemSensesItemSeeAlsoItem] | Unset = UNSET
+        if _see_also is not UNSET:
+            see_also = []
+            for see_also_item_data in _see_also:
+                see_also_item = DictionaryCandidateEntriesItemSensesItemSeeAlsoItem.from_dict(
+                    see_also_item_data
+                )
+
+                see_also.append(see_also_item)
+
+        _antonyms = _src.pop("antonyms", UNSET)
+        antonyms: list[DictionaryCandidateEntriesItemSensesItemAntonymsItem] | Unset = UNSET
+        if _antonyms is not UNSET:
+            antonyms = []
+            for antonyms_item_data in _antonyms:
+                antonyms_item = DictionaryCandidateEntriesItemSensesItemAntonymsItem.from_dict(
+                    antonyms_item_data
+                )
+
+                antonyms.append(antonyms_item)
+
         dictionary_candidate_entries_item_senses_item = cls(
             position=position,
             definitions=definitions,
             tags=tags,
             notes=notes,
+            see_also=see_also,
+            antonyms=antonyms,
         )
 
         dictionary_candidate_entries_item_senses_item.additional_properties = _src

@@ -101,11 +101,17 @@ from .dictionary_candidate import DictionaryCandidate
 from .dictionary_candidate_custom_frequencies_item import DictionaryCandidateCustomFrequenciesItem
 from .dictionary_candidate_entries_item import DictionaryCandidateEntriesItem
 from .dictionary_candidate_entries_item_senses_item import DictionaryCandidateEntriesItemSensesItem
+from .dictionary_candidate_entries_item_senses_item_antonyms_item import (
+    DictionaryCandidateEntriesItemSensesItemAntonymsItem,
+)
 from .dictionary_candidate_entries_item_senses_item_definitions_item import (
     DictionaryCandidateEntriesItemSensesItemDefinitionsItem,
 )
 from .dictionary_candidate_entries_item_senses_item_definitions_item_lang import (
     DictionaryCandidateEntriesItemSensesItemDefinitionsItemLang,
+)
+from .dictionary_candidate_entries_item_senses_item_see_also_item import (
+    DictionaryCandidateEntriesItemSensesItemSeeAlsoItem,
 )
 from .dictionary_candidate_entries_item_senses_item_tags_item import (
     DictionaryCandidateEntriesItemSensesItemTagsItem,
@@ -597,8 +603,10 @@ __all__ = (
     "DictionaryCandidateCustomFrequenciesItem",
     "DictionaryCandidateEntriesItem",
     "DictionaryCandidateEntriesItemSensesItem",
+    "DictionaryCandidateEntriesItemSensesItemAntonymsItem",
     "DictionaryCandidateEntriesItemSensesItemDefinitionsItem",
     "DictionaryCandidateEntriesItemSensesItemDefinitionsItemLang",
+    "DictionaryCandidateEntriesItemSensesItemSeeAlsoItem",
     "DictionaryCandidateEntriesItemSensesItemTagsItem",
     "DictionaryCandidateEntriesItemSensesItemTagsItemCategory",
     "DictionaryCandidateFormsItem",
